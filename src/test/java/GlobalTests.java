@@ -2,6 +2,8 @@ import org.junit.Test;
 import org.junit.Before;
 import org.junit.Ignore;
 
+import java.util.HashMap;
+
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -46,6 +48,15 @@ class CashMachine {
   private int number;
   private int amount;
 
+  private void menu() {
+    System.out.println("Hi! Choose, what type of operation do you need:" + "\n" +
+                      "Enter '1', if you need add money on your card" + "\n" +
+                      "Enter '2', if you need get cash from your card" + "\n" +
+                      "Enter '3', if you need print, how much money on your card");
+    StringBuffer temp = new StringBuffer();
+
+  }
+
   public String addCash(String currency, int value, int number) {
     String reply = "ERROR";
 
@@ -66,4 +77,12 @@ class CashMachine {
 
     return reply;
   }
+}
+
+class Money {
+  private HashMap<Integer, Integer> usd = new HashMap<>();
+  private HashMap<Integer, Integer> eur = new HashMap<>();
+  private HashMap<Integer, Integer> uah = new HashMap<>();
+
+
 }
