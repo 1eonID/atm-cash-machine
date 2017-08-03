@@ -1,4 +1,4 @@
-public interface Card {
+public interface Account {
 
   String addCash(String currency, int value, int number);
 

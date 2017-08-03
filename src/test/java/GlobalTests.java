@@ -1,20 +1,17 @@
 import org.junit.Test;
 import org.junit.Before;
-import org.junit.Ignore;
-
-import java.util.HashMap;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 public class GlobalTests {
   private CashMachine atm1;
-  private Card card;
+  private Account card;
 
   @Before
   public void setUp() {
     atm1 = new CashMachine();
-    card = new UserCard();
+    card = new UserAccount();
 
   }
 

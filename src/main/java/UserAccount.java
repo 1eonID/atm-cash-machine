@@ -1,10 +1,11 @@
-import java.util.HashMap;
 import java.util.Map;
+import java.util.HashMap;
 
-public class UserCard implements Card{
+/** The Receiver class */
+public class UserAccount implements Account {
+
+  private Map<String, Map<Integer, Integer>> list = new HashMap<>();
   private Map<Integer, Integer> usd = new HashMap<>();
-  private Map<Integer, Integer> eur = new HashMap<>();
-  private Map<Integer, Integer> uah = new HashMap<>();
 
   MoneyBox money = new Money();
 
