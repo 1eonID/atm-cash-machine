@@ -32,4 +32,8 @@ public class UserAccount implements Account {
     return reply;
   }
 
+  public boolean contains(Integer key) {
+    return usd.containsKey(key);
+  }
+
 }
