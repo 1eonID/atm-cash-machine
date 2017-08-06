@@ -1,5 +1,6 @@
 public class Valid implements Validator {
   String[] args;
+  Account user = new UserAccount();
 
   @Override
   public boolean isValid() {
@@ -9,10 +10,11 @@ public class Valid implements Validator {
           && (args[3].matches("\\d+"))) {
         if (args[2].matches("\\d+")) {
           Integer key = Integer.parseInt(args[1]);
-          contains(key);
+          if (user.contains(key)) {
+            return true;
+          }
         }
       }
-      return true;
     }
 
     if (args[0].equals("-")) {
@@ -35,12 +37,5 @@ public class Valid implements Validator {
 //    Command print = new PrintFromCard();
 
     return false;
-  }
-
-
-  @Override
-  public void validate() {
-
-
   }
 }

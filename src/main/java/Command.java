@@ -1,5 +1,5 @@
 public interface Command {
 
-  public void execute();
+  void execute(String[] args);
 
 }

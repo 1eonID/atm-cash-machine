@@ -12,7 +12,7 @@ public class AddOnCard implements Command {
   }
 
   @Override
-  public void execute() {
+  public void execute(String[] args) {
     userAcc.addCash(currency, value, number);
   }
 }
