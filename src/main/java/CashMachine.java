@@ -3,9 +3,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
-public class CashMachine {
+class CashMachine {
   private Map<String, Valid> vMap = new HashMap<>();
 
   private Valid valid = new Valid();
@@ -19,13 +18,17 @@ public class CashMachine {
         + "XXX - code of your currency (example: 'USD' - for United States Dollar)" + "\n"
         + "aa - is the value of notes" + "\n"
         + "bb - is the number of notes" + "\n"
-        + "cc - is the amount of money do you need");
+        + "cc - is the amount of money do you need" + "\n"
+        + "Enter 'exit' if you want to quit.");
 
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    String line = "";
-    while (!Objects.equals(line, "exit")) {
-      line = reader.readLine();
+    while (true) {
+      String line = reader.readLine();
+      if (line.equals("exit")) {
+        System.out.println("Good bay and good day!");
+        break;
+      }
 
       String[] args = line.split(" ");
       String cmd = args[0];
@@ -39,12 +42,6 @@ public class CashMachine {
         System.out.println("You entered invalid description, try again.");
       }
     }
-
-//    final Account user = new UserAccount();
-//
-//    final SubmenuSelection userSelection = new SubmenuSelection();
-
   }
-
 }
 

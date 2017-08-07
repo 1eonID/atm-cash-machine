@@ -1,6 +1,6 @@
-public class Valid implements Validator {
+public class Valid implements Validator, Command {
   String[] args;
-  Account user = new UserAccount();
+  private Account userAcc = new UserAccount();
 
   @Override
   public boolean isValid() {
@@ -9,8 +9,8 @@ public class Valid implements Validator {
           && (args[1].equals("USD") || args[1].equals("UAH") || args[1].equals("EUR"))
           && (args[3].matches("\\d+"))) {
         if (args[2].matches("\\d+")) {
-          Integer key = Integer.parseInt(args[1]);
-          if (user.contains(key)) {
+          Integer key = Integer.parseInt(args[2]);
+          if (userAcc.contains(key)) {
             return true;
           }
         }
@@ -30,12 +30,30 @@ public class Valid implements Validator {
       return true;
     }
 
-//    Command addCash = new AddOnCard();
-
-//    Command getCash = new GetFromCard();
-//
-//    Command print = new PrintFromCard();
-
     return false;
+  }
+
+  @Override
+  public void execute(String[] args) {
+    String cmd = args[0];
+    String currency;
+    int value;
+    int number;
+    int amount;
+
+    if (cmd.equals("+")) {
+      currency = args[1];
+      value = Integer.parseInt(args[2]);
+      number = Integer.parseInt(args[3]);
+
+      userAcc.addCash(currency, value, number);
+    } else if (cmd.equals("-")) {
+      currency = args[1];
+      amount = Integer.parseInt(args[2]);
+
+      userAcc.getCash(currency, amount);
+    } else {
+      userAcc.printCashOnCard();
+    }
   }
 }
