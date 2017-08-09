@@ -1,3 +1,5 @@
+import Validators.*;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -5,9 +7,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 class CashMachine {
-  private Map<String, Valid> vMap = new HashMap<>();
+  private Map<String, Validator> vMap = new HashMap<>();
 
-  private Valid valid = new Valid();
+  private AddValidator addValid = new AddValidator();
+  private GetValidator getValid = new GetValidator();
+  private PrintValidator printValid = new PrintValidator();
 
   void menu() throws IOException {
     System.out.println("Hi! Choose, what type of operation do you need:" + "\n"

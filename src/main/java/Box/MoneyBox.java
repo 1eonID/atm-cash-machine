@@ -1,3 +1,5 @@
+package Box;
+
 public interface MoneyBox {
 
   String add();

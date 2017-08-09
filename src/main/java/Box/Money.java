@@ -1,7 +1,9 @@
+package Box;
+
 import java.util.HashMap;
 import java.util.Map;
 
-class Money implements MoneyBox {
+public class Money implements MoneyBox {
   private Map<String, Map<Integer, Integer>> list = new HashMap<>();
   private Map<Integer, Integer> usd = new HashMap<>();
 

@@ -1,3 +1,4 @@
+import Account.Account;
 import org.junit.Test;
 import org.junit.Before;
 
@@ -11,7 +12,7 @@ public class GlobalTests {
   @Before
   public void setUp() {
     atm1 = new CashMachine();
-    card = new UserAccount();
+    card = new Account.UserAccount();
 
   }
 
