@@ -1,15 +1,23 @@
 package Box;
 
-public class Config {
-  Properties properties = new Properties();
-try {
-    properties.load(new FileInputStream("path/filename"));
-  } catch (IOException e) {
-  ...
-  }
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Properties;
 
-  for(String key : properties.stringPropertyNames()) {
-    String value = properties.getProperty(key);
-    System.out.println(key + " => " + value);
+public class Config {
+  FileInputStream fileInputStream;
+  Properties prop = new Properties();
+
+  try {
+    fileInputStream = new FileInputStream("conf.properties");
+    prop.load(fileInputStream);
+
+    String currency = prop.getProperty("currency");
+    String value = prop.getProperty("value");
+
+  } catch (IOException e) {
+    e.printStackTrace();
   }
 }
