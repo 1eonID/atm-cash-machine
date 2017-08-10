@@ -9,7 +9,7 @@ import java.util.HashMap;
 /** The Receiver class */
 public class UserAccount implements Account {
 
-  private final Map<String, Map<Integer, Integer>> list = createMap();
+  private Map<String, AccountOperations> list = createMap();
   private Map<Integer, Integer> usd = new HashMap<>();
   private Map<Integer, Integer> eur = new HashMap<>();
   private Map<Integer, Integer> uah = new HashMap<>();
@@ -53,8 +53,8 @@ public class UserAccount implements Account {
     return usd.containsKey(key);
   }
 
-  private Map<String, Map<Integer, Integer>> createMap() {
-    Map<String, Map<Integer, Integer>> list = new HashMap<>();
+  private Map<String, AccountOperations> createMap() {
+    Map<String, AccountOperations> list = new HashMap<>();
     int n = 0;
     for (int i = 0; i <= 4; i++) {
       n = n + 1;

@@ -8,7 +8,7 @@ public class AddValidator implements Validator{
   private Account userAcc = new UserAccount();
 
   @Override
-  public boolean isValid() {
+  public boolean validate() {
     if ((args.length == 4) && (args[1].length() == 3)
         && (args[1].equals("USD") || args[1].equals("UAH") || args[1].equals("EUR"))
         && (args[3].matches("\\d+"))) {

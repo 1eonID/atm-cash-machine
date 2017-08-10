@@ -35,13 +35,13 @@ class CashMachine {
       }
 
       String[] args = line.split(" ");
-      String cmd = args[0];
-      valid.args = args;
+      cmd = get(args[0]);
+//      valid.args = args
 
       vMap.put(cmd, valid);
 
-      if (valid.isValid()) {
-        vMap.get(cmd).execute(args);
+      if (cmd.validate(args)) {
+        cmd.execute(args);
       } else {
         System.out.println("You entered invalid description, try again.");
       }

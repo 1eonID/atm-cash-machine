@@ -2,10 +2,10 @@ package Commands;
 
 import Account.Account;
 
-public class PrintFromCard implements Command {
+public class PrintCommand implements Command {
   private Account userAcc;
 
-  public PrintFromCard(final Account account) {
+  public PrintCommand(final Account account) {
     this.userAcc = account;
   }
 

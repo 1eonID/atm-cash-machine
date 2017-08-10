@@ -2,13 +2,13 @@ package Commands;
 
 import Account.Account;
 
-public class AddOnCard implements Command {
+public class AddCommand implements Command {
   private Account userAcc;
   private String currency;
   private int value;
   private int number;
 
-  public AddOnCard(final Account account, String currency, int value, int number) {
+  public AddCommand(final Account account, String currency, int value, int number) {
     this.userAcc = account;
     this.currency = currency;
     this.value = value;

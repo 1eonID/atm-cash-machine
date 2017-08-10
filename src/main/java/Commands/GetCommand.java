@@ -2,12 +2,12 @@ package Commands;
 
 import Account.Account;
 
-public class GetFromCard implements Command {
+public class GetCommand implements Command {
   private Account userAcc;
   private String currency;
   private int amount;
 
-  public GetFromCard(final Account account, String currency, int amount) {
+  public GetCommand(final Account account, String currency, int amount) {
     this.userAcc = account;
     this.currency = currency;
     this.amount = amount;
