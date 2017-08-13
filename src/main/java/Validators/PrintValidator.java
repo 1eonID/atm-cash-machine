@@ -1,13 +1,9 @@
 package Validators;
 
-public class PrintValidator implements Validator{
-  public String[] args;
+public class PrintValidator implements Validator {
 
   @Override
-  public boolean validate() {
-    if (args.length == 1) {
-      return true;
-    }
-    return false;
+  public boolean validate(String[] args) {
+    return args.length == 1;
   }
 }

@@ -2,6 +2,6 @@ package Validators;
 
 public interface Validator {
 
-  boolean validate();
+  boolean validate(String[] args);
 
 }

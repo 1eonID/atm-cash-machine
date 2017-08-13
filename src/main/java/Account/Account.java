@@ -7,6 +7,4 @@ public interface Account {
   String getCash(String currency, int amount);
 
   String printCashOnCard();
-
-  boolean contains(Integer key);
 }

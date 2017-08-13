@@ -8,12 +8,6 @@ public class AddCommand implements Command {
   private int value;
   private int number;
 
-  public AddCommand(final Account account, String currency, int value, int number) {
-    this.userAcc = account;
-    this.currency = currency;
-    this.value = value;
-    this.number = number;
-  }
 
   @Override
   public void execute(String[] args) {

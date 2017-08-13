@@ -7,17 +7,19 @@ import java.io.InputStreamReader;
 import java.util.Properties;
 
 public class Config {
-  FileInputStream fileInputStream;
-  Properties prop = new Properties();
+  private Properties properties = new Properties();
 
-  try {
-    fileInputStream = new FileInputStream("conf.properties");
-    prop.load(fileInputStream);
+  public Config() {
+    try (FileInputStream fStream = new FileInputStream("conf.properties");
+         InputStreamReader in = new InputStreamReader(fStream)) {
 
-    String currency = prop.getProperty("currency");
-    String value = prop.getProperty("value");
-
-  } catch (IOException e) {
-    e.printStackTrace();
+      try {
+        properties.load(in);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }
