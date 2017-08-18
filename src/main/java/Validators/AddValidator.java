@@ -1,7 +1,7 @@
 package Validators;
 
-public class AddValidator implements Validator{
-  private Property prop = new Property();
+public class AddValidator extends Property implements Validator{
+  private Property prop;
 
   @Override
   public boolean validate(String[] args) {

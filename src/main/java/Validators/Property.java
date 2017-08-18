@@ -8,21 +8,19 @@ import java.util.Map;
 import java.util.Properties;
 
 class Property {
-  private Properties prop = new Properties();
+  private static Properties prop = new Properties();
 
   Property() {
     try (FileInputStream fStream = new FileInputStream("prop.properties");
          InputStreamReader in = new InputStreamReader(fStream)) {
       try {
         prop.load(in);
-        in.close();
       } catch (IOException e) {
         e.printStackTrace();
       }
     } catch (IOException e) {
       e.printStackTrace();
     }
-
   }
 
   boolean isValid(String[] args) {
@@ -38,10 +36,14 @@ class Property {
     if (args[2].matches("\\d+")) {
       Integer key = Integer.parseInt(args[2]);
       String[] currValues = currencyMap.get(args[1]);
-      if (currValues.)
-    }
-
+      for (String value : currValues) {
+        if (Integer.parseInt(value) == key) {
+          return true;
+        }
+      }
       return false;
+    }
+    return false;
   }
 }
 
