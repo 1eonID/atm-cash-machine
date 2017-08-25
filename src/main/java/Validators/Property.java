@@ -23,7 +23,19 @@ class Property {
     }
   }
 
-  boolean isValid(String[] args) {
+  boolean currencyIsValid(String enteredCur) {
+    //load from property file to map, properties of valid currencies
+    String[] currencies = (prop.getProperty("currency")).split(", ");
+
+    for (String currency : currencies) {
+        if (currency.equals(enteredCur)) {
+          return true;
+        }
+    }
+    return false;
+  }
+
+  boolean valueIsValid(String enteredCur, Integer enteredValue) {
     //load from property file to map, properties of valid currencies and values to each currencies
     Map<String, String[]> currencyMap = new HashMap<>();
     String[] currencies = (prop.getProperty("currency")).split(", ");
@@ -33,15 +45,11 @@ class Property {
       currencyMap.put(currency, currValue);
     }
 
-    if (args[2].matches("\\d+")) {
-      Integer key = Integer.parseInt(args[2]);
-      String[] currValues = currencyMap.get(args[1]);
-      for (String value : currValues) {
-        if (Integer.parseInt(value) == key) {
-          return true;
-        }
+    String[] currValues = currencyMap.get(enteredCur);
+    for (String value : currValues) {
+      if (Integer.parseInt(value) == enteredValue) {
+        return true;
       }
-      return false;
     }
     return false;
   }

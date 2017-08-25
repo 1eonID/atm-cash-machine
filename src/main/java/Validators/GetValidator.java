@@ -1,14 +1,16 @@
 package Validators;
 
 public class GetValidator implements Validator{
-  public String[] args;
+  private Property prop = new Property();
 
   @Override
   public boolean validate(String[] args) {
-    if ((args.length == 3)
-        && (args[1].equals("USD") || args[1].equals("UAH") || args[1].equals("EUR"))) {
+    if ((args.length == 3) && (prop.currencyIsValid(args[1]))) {
       if (args[2].matches("\\d+")) {
-        return true;
+        int amount = Integer.parseInt(args[2]);
+        if ((amount > 0) && (amount <= 100_000)) {
+          return true;
+        }
       }
     }
     return false;
