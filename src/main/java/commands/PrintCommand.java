@@ -8,6 +8,6 @@ public class PrintCommand implements Command {
 
   @Override
   public void execute(String[] args) {
-    userAcc.printCashOnCard();
+    userAcc.printBillStateOnCard();
   }
 }

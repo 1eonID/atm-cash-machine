@@ -11,10 +11,11 @@ class Property {
   private static Properties prop = new Properties();
 
   Property() {
-    try (FileInputStream fStream = new FileInputStream("prop.properties");
+    try (FileInputStream fStream = new FileInputStream("conf.properties");
          InputStreamReader in = new InputStreamReader(fStream)) {
       try {
         prop.load(in);
+        in.close();
       } catch (IOException e) {
         e.printStackTrace();
       }
@@ -41,12 +42,12 @@ class Property {
     String[] currencies = (prop.getProperty("currency")).split(", ");
     //each values of each currencies
     for (String currency : currencies) {
-      String[] currValue = (prop.getProperty(currency)).split(", ");
-      currencyMap.put(currency, currValue);
+      String[] currValues = (prop.getProperty(currency + "value")).split(", ");
+      currencyMap.put(currency, currValues);
     }
 
-    String[] currValues = currencyMap.get(enteredCur);
-    for (String value : currValues) {
+    String[] ourValues = currencyMap.get(enteredCur);
+    for (String value : ourValues) {
       if (Integer.parseInt(value) == enteredValue) {
         return true;
       }

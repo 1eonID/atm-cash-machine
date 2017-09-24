@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-public class Config {
+public class BoxConfig implements MoneyBox {
   private static Properties prop = new Properties();
 
-  public Config() {
+  public BoxConfig() {
     try (FileInputStream fStream = new FileInputStream("conf.properties");
          InputStreamReader in = new InputStreamReader(fStream)) {
       try {
@@ -34,7 +34,26 @@ public class Config {
     return currencyMap;
   }
 
-  boolean isEnoughMoney(String enteredCur, Integer enteredAmount) {
+  private Map<String, Map<Integer, Integer>> createMapOfCurAndNumOfVal() {
+    //load from config file to map, all currencies
+    Map<String, Map<Integer, Integer>> currencyMap = new HashMap<>();
+
+    String[] currencies = (prop.getProperty("currency")).split(", ");
+
+    for (String currency : currencies) {
+      Map<Integer, Integer> valAndNumMap = new HashMap<>();
+      String[] currValues = (prop.getProperty(currency + "value")).split(", ");
+      String[] currNums = (prop.getProperty(currency + "number")).split(", ");
+      for (int i = 0; i < currValues.length; i++) {
+        valAndNumMap.put(Integer.parseInt(currValues[i]), Integer.parseInt(currNums[i]));
+      }
+      currencyMap.put(currency, valAndNumMap);
+    }
+
+    return currencyMap;
+  }
+
+  public boolean isEnoughMoney(String enteredCur, Integer enteredAmount) {
     Map<String, Integer> currencyMap = createMapOfCurAndAmount();
 
     Integer currAmount = currencyMap.get(enteredCur);
@@ -51,7 +70,7 @@ public class Config {
     try (FileOutputStream fStream = new FileOutputStream("conf.properties");
          OutputStreamWriter out = new OutputStreamWriter(fStream)) {
       try {
-        //getting logic
+        //getting logic!!!
         prop.setProperty(enteredCur + "amount", String.valueOf(restOfMoney));
         prop.store(out, null);
         out.close();
@@ -63,7 +82,25 @@ public class Config {
     }
   }
 
-  public void addAmount(String enteredCur, Integer enteredValue, Integer enteredNumber) {
+  public void addNum(String enteredCur, Integer enteredValue, Integer enteredNumber) {
+    Map<String, Map<Integer, Integer>> currMap= createMapOfCurAndNumOfVal();
 
+    Map<Integer, Integer> currValAndNum = currMap.get(enteredCur);
+    int newNum = enteredNumber + currValAndNum.get(enteredValue);
+    currValAndNum.put(enteredValue, newNum);
+    String newNumbers = String.valueOf(currValAndNum.values()); //need to testing!!!
+
+    try (FileOutputStream fStream = new FileOutputStream("conf.properties");
+         OutputStreamWriter out = new OutputStreamWriter(fStream)) {
+      try {
+        prop.setProperty(enteredCur + "number", newNumbers);
+        prop.store(out, null);
+        out.close();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }

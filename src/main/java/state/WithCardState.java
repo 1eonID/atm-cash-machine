@@ -1,4 +1,4 @@
-package CashMachineState;
+package cash_machine_state;
 
 public class WithCardState implements CashMashineState {
   @Override
