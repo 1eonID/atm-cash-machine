@@ -1,15 +1,19 @@
-package User;
+package user;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 
 public class UserConfig implements User {
 
   private static Properties prop = new Properties();
 
+  /**read properties from file to Properties object.*/
   public UserConfig() {
     try (FileInputStream fStream = new FileInputStream("users.properties");
          InputStreamReader in = new InputStreamReader(fStream)) {
@@ -85,9 +89,10 @@ public class UserConfig implements User {
   public String printBillState() {
     Map<String, Integer> currencyMap = createMapOfCurAndAmount();
 
-    Set<String> set = currencyMap.keySet();
-    String result = "";
-
-    return result;
+    StringBuilder result = new StringBuilder();
+    for (Map.Entry<String, Integer> pair : currencyMap.entrySet()) {
+      result.append(pair.getKey()).append(" : ").append(pair.getValue()).append("\n");
+    }
+    return result.toString();
   }
 }
