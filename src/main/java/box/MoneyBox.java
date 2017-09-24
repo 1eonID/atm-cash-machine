@@ -1,4 +1,4 @@
-package Box;
+package box;
 
 public interface MoneyBox {
 
