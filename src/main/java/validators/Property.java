@@ -1,4 +1,4 @@
-package Validators;
+package validators;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -29,9 +29,9 @@ class Property {
     String[] currencies = (prop.getProperty("currency")).split(", ");
 
     for (String currency : currencies) {
-        if (currency.equals(enteredCur)) {
-          return true;
-        }
+      if (currency.equals(enteredCur)) {
+        return true;
+      }
     }
     return false;
   }

@@ -1,6 +1,6 @@
-package Validators;
+package validators;
 
-public class GetValidator implements Validator{
+public class GetValidator implements Validator {
   private Property prop = new Property();
 
   @Override
