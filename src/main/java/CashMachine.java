@@ -1,5 +1,7 @@
-import Commands.*;
-import Validators.*;
+import commands.AddCommand;
+import commands.Command;
+import commands.GetCommand;
+import commands.PrintCommand;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,16 +9,21 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
+import validators.AddValidator;
+import validators.GetValidator;
+import validators.PrintValidator;
+import validators.Validator;
+
 class CashMachine {
   //create maps for validators
-  private Map<String, Validator> vMap = new HashMap<>();
+  private Map<String, Validator> validMap = new HashMap<>();
 
   private AddValidator addValid = new AddValidator();
   private GetValidator getValid = new GetValidator();
   private PrintValidator printValid = new PrintValidator();
 
   //create maps for commands
-  private Map<String, Command> cMap = new HashMap<>();
+  private Map<String, Command> comMap = new HashMap<>();
 
   private AddCommand addCommand = new AddCommand();
   private GetCommand getCommand = new GetCommand();
@@ -24,13 +31,13 @@ class CashMachine {
 
   void menu() throws IOException {
 
-    vMap.put("+", addValid);
-    vMap.put("-", getValid);
-    vMap.put("?", printValid);
+    validMap.put("+", addValid);
+    validMap.put("-", getValid);
+    validMap.put("?", printValid);
 
-    cMap.put("+", addCommand);
-    cMap.put("-", getCommand);
-    cMap.put("?", printCommand);
+    comMap.put("+", addCommand);
+    comMap.put("-", getCommand);
+    comMap.put("?", printCommand);
 
     System.out.println("Hi! Choose, what type of operation do you need:" + "\n"
         + "Enter '+ XXX aa bb', if you need add money on your card" + "\n"
@@ -55,10 +62,10 @@ class CashMachine {
       String[] args = line.split(" ");
       String cmd = args[0];
 
-      if (vMap.get(cmd).validate(args)) {
-        cMap.get(cmd).execute(args);
+      if (validMap.containsKey(cmd) && validMap.get(cmd).validate(args)) {
+        System.out.println(comMap.get(cmd).execute(args));
       } else {
-        System.out.println("You entered invalid description, try again.");
+        System.out.println("You entered invalid description, try again."  + "\n");
       }
     }
   }
