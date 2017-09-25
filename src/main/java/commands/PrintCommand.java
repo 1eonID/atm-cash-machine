@@ -1,13 +1,13 @@
-package Commands;
+package commands;
 
-import Account.Account;
-import Account.UserAccount;
+import account.Account;
+import account.UserAccount;
 
 public class PrintCommand implements Command {
   private Account userAcc = new UserAccount();
 
   @Override
-  public void execute(String[] args) {
-    userAcc.printBillStateOnCard();
+  public String execute(String[] args) {
+    return userAcc.printBillStateOnCard();
   }
 }
