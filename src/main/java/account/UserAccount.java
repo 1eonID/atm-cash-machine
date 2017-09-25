@@ -1,4 +1,4 @@
-package Account;
+package account;
 
 /* The Receiver class */
 public class UserAccount implements Account {

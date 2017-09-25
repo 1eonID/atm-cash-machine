@@ -1,9 +1,9 @@
-package Account;
+package account;
 
-import Box.BoxConfig;
-import Box.MoneyBox;
-import User.UserConfig;
-import User.User;
+import box.BoxConfig;
+import box.MoneyBox;
+import user.User;
+import user.UserConfig;
 
 class AccountOperations implements Operations {
   private MoneyBox boxConf = new BoxConfig();
@@ -18,16 +18,16 @@ class AccountOperations implements Operations {
 
   public String getCashFromAccount(String currency, int amount) {
     if (!user.isEnoughMoneyOnAccount(currency,amount)) {
-      return "Sorry, not enough money on your account";
+      return "Sorry, not enough money on your account"  + "\n";
     } else {
       if (!boxConf.isEnoughMoney(currency, amount)) {
-        return "Sorry, not enough money in the box, try to use another nearest ATM";
+        return "Sorry, not enough money in the box, try to use another nearest ATM" + "\n";
       } else {
         boxConf.getAmount(currency, amount);
         user.getAmount(currency, amount);
       }
     }
-    return "OK";
+    return "OK" + "\n";
   }
 
   public String printBillStateOnAccount() {
